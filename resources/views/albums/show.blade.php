@@ -2,8 +2,9 @@
 
 @section('content')
     <h1>{{$album->name}}</h1>
-    <a href="/" class="button secondary">Go Back</a>
-    <a class="button" href="/photos/create/{{$album->id}}">Upload Photo to Album</a>
+    <a href="{{route('home')}}" class="button secondary">Go Back</a>
+    <a class="button" href="{{route('photos.create',$album->id)}}">Upload Photo to Album</a>
+
     <hr>
 
     @if(count($album->photos) > 0)
@@ -16,15 +17,15 @@
         @foreach($album->photos as $photo)
           @if($i == $colcount)
              <div class='medium-4 columns end'>
-               <a href="/photos/{{$photo->id}}">
-                  <img class="thumbnail" src="/storage/photos/{{$photo->album_id}}/{{$photo->photo}}" alt="{{$photo->title}}">
+               <a href="{{route('photos.show',$photo->id)}}">
+               <img class="thumbnail" src="{{asset("/storage/photos/$photo->album_id/$photo->photo")}}" alt="{{$photo->title}}">
                 </a>
                <br>
                <h4>{{$photo->title}}</h4>
           @else
             <div class='medium-4 columns'>
-                <a href="/photos/{{$photo->id}}">
-                    <img class="thumbnail" src="/storage/photos/{{$photo->album_id}}/{{$photo->photo}}" alt="{{$photo->title}}">
+                <a href="{{route('photos.show',$photo->id)}}">
+                    <img class="thumbnail" src="{{asset("/storage/photos/$photo->album_id/$photo->photo")}}" alt="{{$photo->title}}">
                   </a>
                  <br>
                  <h4>{{$photo->title}}</h4>

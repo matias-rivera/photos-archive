@@ -11,15 +11,18 @@
         @foreach($albums as $album)
           @if($i == $colcount)
              <div class='medium-4 columns end'>
-               <a href="/albums/{{$album->id}}">
-                  <img class="thumbnail" src="storage/album_covers/{{$album->cover_image}}" alt="{{$album->name}}">
+               <a href="{{route('albums.show',$album->id)}}">
+              {{--  <a href="/albums/{{$album->id}}"> --}}
+                
+                  <img class="thumbnail" src="{{asset("/storage/album_covers/$album->cover_image")}}" alt="{{$album->name}}">
                 </a>
                <br>
                <h4>{{$album->name}}</h4>
           @else
             <div class='medium-4 columns'>
-              <a href="/albums/{{$album->id}}">
-                <img class="thumbnail" src="storage/album_covers/{{$album->cover_image}}" alt="{{$album->name}}">
+            {{--   <a href="/albums/{{$album->id}}"> --}}
+              <a href="{{route('albums.show',$album->id)}}">
+                <img class="thumbnail" src="{{asset("/storage/album_covers/$album->cover_image")}}" alt="{{$album->name}}">
               </a>
               <br>
               <h4>{{$album->name}}</h4>
@@ -28,7 +31,7 @@
           </div></div><div class="row text-center">
         	@else
             </div>
-            @endif
+              @endif
         	<?php $i++; ?>
         @endforeach
       </div>
